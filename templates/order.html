@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th class="text-center">Unit Price</th>
+            <th class="text-center">Price</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+
+<tbody>
+    {% for key, val in session['cart_item'].items() %}
+        {% set quantity = session['cart_item'][key]['quantity'] %}
+        {% set price = session['cart_item'][key]['price'] %}
+        {% set item_price = session['cart_item'][key]['total_price'] %} 
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <div class="media-body" style="padding-left:10px;">
+                                <h4 class="media-heading"> <a>{{ session['cart_item'][key]['name'] }}</a></h4>
+                            </div>
+                        </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center"><strong>{{ quantity }} </strong></td>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>₹{{ price }} </strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>₹{{ item_price }} </strong></td>
+                        <td class="col-sm-1 col-md-1">
+                        </a></td>
+                    </tr>
+    {% endfor %}
+                    <tr>
+                        <td colspan="4"><h5>Total Quantity</h5></td>
+                        <td class="text-right"><h5><strong>{{ session['all_total_quantity'] }}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><h3>Total</h3></td>
+                        <td colspan="2" class="text-right"><h3><strong>₹ {{ session['all_total_price'] }}</strong></h3></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Your order placed successfully. You get your product with in one week in cash on delivery</h2>
+            <h4>Thank you for shoping</h4>
+            
+
+</body>
+</html>
